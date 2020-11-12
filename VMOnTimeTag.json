@@ -1,32 +1,32 @@
 {
-  "mode": "All",
+  "mode": "Indexed",
   "policyRule": {
     "if": {
       "allOf": [
         {
-          "field": "type",
-          "equals": "Microsoft.Compute/VirtualMachines"
+          "equals": "Microsoft.Compute/VirtualMachines",
+          "field": "type"
         },
         {
           "field": "[concat('tags[', parameters('tagName'), ']')]",
-          "notEquals": "[parameters('tagValue')]"
+          "exists": "false"
         }
       ]
     },
     "then": {
-      "effect": "modify",
       "details": {
-        "roleDefinitionIds": [
-          "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
-        ],
         "operations": [
           {
-            "operation": "addOrReplace",
             "field": "[concat('tags[', parameters('tagName'), ']')]",
+            "operation": "add",
             "value": "[parameters('tagValue')]"
           }
+        ],
+        "roleDefinitionIds": [
+          "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
         ]
-      }
+      },
+      "effect": "modify"
     }
   },
   "parameters": {
@@ -44,7 +44,7 @@
         "displayName": "Value of Tag",
         "description": "Value of the tag"
       },
-      "defaultValue": "' '"
+      "defaultValue": " "
     }
   }
 }
