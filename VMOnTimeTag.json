@@ -44,7 +44,7 @@
         "displayName": "Value of Tag",
         "description": "Value of the tag"
       },
-      "defaultValue": " "
+      "defaultValue": "' '"
     }
   }
 }
