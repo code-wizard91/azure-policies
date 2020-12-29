@@ -59,6 +59,10 @@ POLICY_RULE
         "displayName": "Value of Tag",
         "description": "Value of the tag"
       },
+        "allowedValues": [
+          "24/7",
+          "12/7"
+        ],
       "defaultValue": "' '"
     }
   }
