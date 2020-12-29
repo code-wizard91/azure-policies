@@ -8,8 +8,8 @@
           "field": "type"
         },
         {
-          "field": "[concat('tags[', parameters('tagName'), ']')]",
-          "exists": "false"
+          "exists": "false",
+          "field": "[concat('tags[', parameters('tagName'), ']')]"
         }
       ]
     },
@@ -44,6 +44,10 @@
         "displayName": "Value of Tag",
         "description": "Value of the tag"
       },
+        "allowedValues": [
+          "24/7",
+          "12/7"
+        ],
       "defaultValue": "' '"
     }
   }
