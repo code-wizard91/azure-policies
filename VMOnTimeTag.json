@@ -46,9 +46,10 @@
       },
         "allowedValues": [
           "24/7",
-          "12/7"
+          "12/7",
+          ""
         ],
-      "defaultValue": "' '"
+      "defaultValue": ""
     }
   }
 }
