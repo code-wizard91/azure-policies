@@ -61,9 +61,10 @@ POLICY_RULE
       },
         "allowedValues": [
           "24/7",
-          "12/7"
+          "12/7",
+          ""
         ],
-      "defaultValue": "' '"
+      "defaultValue": ""
     }
   }
 PARAMETERS
