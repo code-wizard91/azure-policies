@@ -1,0 +1,32 @@
+provider "azurerm" {
+  features {}
+}
+
+  
+resource "azurerm_policy_definition" "policy" {
+  name                  = "OnTime-Tag-Policy"
+  policy_type           = "Custom"
+  mode                  = "Indexed"
+  display_name          = "OnTime-Tag-Policy"
+  policy_rule           = file("${path.module}./policies/ontimetag.json")
+    metadata = <<METADATA
+    {
+        "category": "General",
+        "version": "__policyBuildNumber__"      
+    }
+    METADATA
+
+}
+
+resource "azurerm_policy_assignment" "assignment" {
+  name                 = "OnTimeTag-Policy-Assignment"
+  scope                = "/subscriptions/81715e14-eb31-4a69-a2da-686ff14407ca"
+  policy_definition_id = azurerm_policy_definition.policy.id
+  description          = "Applies OnTimeTag on all VM's"
+  display_name         = "OnTimeTag on all VM's"
+    metadata = <<METADATA
+    {
+        "category": "General"     
+    }
+    METADATA
+}
