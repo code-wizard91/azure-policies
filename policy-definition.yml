@@ -24,7 +24,8 @@ resource "azurerm_policy_definition" "policy" {
 
 resource "azurerm_policy_assignment" "assignment" {
   name                 = "OnTimeTag-Policy-Assignment"
-  scope                = "/subscriptions/81715e14-eb31-4a69-a2da-686ff14407ca"
+#  scope                = "/subscriptions/81715e14-eb31-4a69-a2da-686ff14407ca"
+  scope = var.assignment_scope
   policy_definition_id = azurerm_policy_definition.policy.id
   description          = "Applies OnTimeTag on all VM's"
   display_name         = "OnTimeTag on all VM's"
