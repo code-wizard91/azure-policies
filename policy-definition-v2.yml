@@ -1,0 +1,31 @@
+resource "azurerm_policy_definition" "definition" {
+    name = var.name
+    display_name = var.display_name
+    policy_type = "Custom"
+    mode = "All"
+    description = local.description
+    management_group_name = var.management_group_definition_location
+
+    metadata = <<METADATA
+    {
+        "category": "General",
+        "version": "__policyBuildNumber__"      
+    }
+    METADATA
+
+    policy_rule = var.policy_rule
+}
+
+resource "azurerm_policy_assignment" "assignment" {
+    name = var.name
+    scope = var.assignment_scope
+    policy_definition_id = azurerm_policy_definition.definition.id
+    description = local.description
+    display_name = var.display_name
+
+    metadata = <<METADATA
+    {
+        "category": "General"
+    }
+    METADATA
+}
