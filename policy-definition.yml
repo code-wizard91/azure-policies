@@ -8,13 +8,17 @@ resource "azurerm_policy_definition" "policy" {
   policy_type           = "Custom"
   mode                  = "Indexed"
   display_name          = "OnTime-Tag-Policy"
-  policy_rule           = file("${path.module}./policies/ontimetag.json")
+#  management_group_name = var.management_group_definition_location
+#  policy_rule           = file("${path.module}./policies/ontimetag.json")
+  
     metadata = <<METADATA
     {
         "category": "General",
         "version": "__policyBuildNumber__"      
     }
     METADATA
+    
+    policy_rule = var.policy_rule
 
 }
 
